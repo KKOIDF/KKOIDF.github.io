@@ -428,6 +428,29 @@ body {
     margin-bottom: 15px;
 }
 
+.favorite-photos-gallery {
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 300px;
+    margin: 0 auto 15px auto;
+}
+
+.favorite-photos-gallery .actress-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorite-photos-gallery .actress-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
 .cat-photo, .actress-photo {
     width: 120px;
     height: 120px;
@@ -1106,6 +1129,16 @@ body {
     .birthday-photo, .cat-photo, .actress-photo {
         width: 100px;
         height: 100px;
+    }
+    
+    .favorite-photos-gallery {
+        max-width: 250px;
+        gap: 8px;
+    }
+    
+    .favorite-photos-gallery .actress-photo {
+        width: 80px;
+        height: 80px;
     }
     
     .sweet-photo {
