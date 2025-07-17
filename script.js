@@ -1,5 +1,5 @@
 let currentPage = 1;
-const totalPages = 8;
+const totalPages = 9;
 let musicPlaying = false;
 
 // Initialize the website
@@ -80,7 +80,7 @@ function goToPage(pageNumber) {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     
     // Remove active class from current page
-    const currentElement = document.querySelector(`.page:nth-child(${currentPage})`);
+    const currentElement = document.getElementById(`page${currentPage}`);
     if (currentElement) {
         currentElement.classList.remove('active');
         if (pageNumber > currentPage) {
@@ -91,7 +91,7 @@ function goToPage(pageNumber) {
     }
     
     // Add active class to new page
-    const newElement = document.querySelector(`.page:nth-child(${pageNumber})`);
+    const newElement = document.getElementById(`page${pageNumber}`);
     if (newElement) {
         setTimeout(() => {
             newElement.classList.add('active');
@@ -122,7 +122,7 @@ function updateNavigation() {
 
 // Add page-specific animations
 function addPageAnimations(pageNumber) {
-    const page = document.querySelector(`.page:nth-child(${pageNumber})`);
+    const page = document.getElementById(`page${pageNumber}`);
     if (!page) return;
     
     // Remove previous animations
