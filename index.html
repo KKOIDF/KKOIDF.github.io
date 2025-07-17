@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถึงโดนัท ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Welcome -->
+        <div class="page active" id="page1">
+            <div class="content">
+                <div class="hero-image">
+                    <img src="images/24752523-3574-48A1-9DD3-A47FC749B8DA.jpg" alt="ภาพสวยๆ" class="main-photo">
+                </div>
+                <div class="heart-animation">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1 class="main-title">ถึงโดนัท</h1>
+                <h2 class="subtitle">สุภิชยา ชีพสูงเนิน</h2>
+                <p class="romantic-text">
+                    จากวันที่เราได้พบกันที่โรงเรียน<br>
+                    ในฐานะเพื่อนห้องเดียวกัน<br>
+                    ชีวิตของเค้าได้เปลี่ยนไปตลอดกาล ✨
+                </p>
+                <button class="next-btn magic-btn" onclick="nextPage()">
+                    <i class="fas fa-heart"></i> เริ่มต้นการเดินทางแห่งความรัก
+                    <div class="sparkles">
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">💖</span>
+                        <span class="sparkle">⭐</span>
+                    </div>
+                </button>
+            </div>
+            <div class="floating-hearts">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+        </div>
+
+        <!-- Page 2: Birthday Wishes -->
+        <div class="page" id="page2">
+            <div class="content">
+                <h1 class="page-title">🎂 สุขสันต์วันเกิด 18 มีนาคม 🎂</h1>
+                <div class="birthday-content">
+                    <div class="birthday-photos">
+                        <img src="images/A426E87E-777C-496C-8848-66DDA9B01A2E.jpg" alt="ภาพวันเกิด" class="birthday-photo">
+                        <img src="images/B6457B93-4DF7-42F9-9A54-AC334FCE13DF.jpg" alt="ภาพวันเกิด 2" class="birthday-photo">
+                    </div>
+                    <div class="cake-animation bounce-cake">
+                        <i class="fas fa-birthday-cake"></i>
+                        <div class="cake-sparkles">
+                            <span>🎉</span>
+                            <span>🎊</span>
+                            <span>✨</span>
+                            <span>🎈</span>
+                        </div>
+                    </div>
+                    <p class="wish-text">
+                        วันที่ 18 มีนาคม 2547<br>
+                        วันที่โลกใบนี้ได้รับของขวัญที่มีค่าที่สุด<br>
+                        นั่นคือการมีตัวเธอ โดนัท ❤️
+                    </p>
+                    <div class="wishes-box">
+                        <h3>ขออวยพรให้เธอ:</h3>
+                        <ul class="wishes-list">
+                            <li>🌟 มีความสุขในทุกๆ วันที่ผ่านไป</li>
+                            <li>✨ หายเหนื่อยและไม่ต้องเครียดมาก</li>
+                            <li>💪 สุขภาพแข็งแรงเสมอ</li>
+                            <li>📚 เรียนได้เกรดดีๆ</li>
+                            <li>💖 มีความรักและกำลังใจเสมอ</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-gift"></i> ดูของขวัญต่อไป
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 3: Her Favorite Things -->
+        <div class="page" id="page3">
+            <div class="content">
+                <h1 class="page-title">🐱 สิ่งที่โดนัทชอบ 🐱</h1>
+                <div class="favorites-grid">
+                    <div class="favorite-item shake-hover">
+                        <div class="favorite-photo">
+                            <img src="images/BBE3E527-7FDD-477C-9206-06C35C9CEF55.jpg" alt="แมวน่ารัก" class="cat-photo wiggle">
+                        </div>
+                        <div class="cat-icon">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <h3>แมวดำ</h3>
+                        <p>เหมือนที่เธอชอบแมวดำ<br>เค้าก็ชอบดูเธอยิ้ม<br>มันน่ารักเหมือนกัน 🖤</p>
+                        <div class="paw-prints">
+                            <span>🐾</span>
+                            <span>🐾</span>
+                            <span>🐾</span>
+                        </div>
+                    </div>
+                    
+                    <div class="favorite-item glow-hover">
+                        <div class="favorite-photo">
+                            <img src="images/BD6D86DC-4998-4A3D-A26A-90247D52BD5A.jpg" alt="นักแสดงสวย" class="actress-photo">
+                        </div>
+                        <div class="star-icon rotating-star">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>นักแสดงที่ชอบ</h3>
+                        <div class="actresses">
+                            <p class="actress-name">🌟 ฟรีน สโรชา จันทร์กิมฮะ</p>
+                            <p class="actress-name">🌟 ลูกแก้ว กมลลักษณ์ แสงทรัพย์สิน</p>
+                            <p class="actress-name">🌟 น้ำตาล ทิพนารี วีรวัฒโนดม</p>
+                        </div>
+                        <p class="sweet-note">พวกเธอสวยและเท่ห์<br>แต่ไม่เท่าโดนัทของเค้าหรอก 😘</p>
+                        <div class="star-shower">
+                            <span>⭐</span>
+                            <span>🌟</span>
+                            <span>✨</span>
+                            <span>💫</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-heart-eyes"></i> ดูข้อความหวานๆ ต่อไป
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 4: Sweet Messages -->
+        <div class="page" id="page4">
+            <div class="content">
+                <h1 class="page-title">💌 ข้อความจากใจ 💌</h1>
+                <div class="messages-container">
+                    <div class="message-card typing-effect">
+                        <div class="message-photo">
+                            <img src="images/CCBE6973-5555-4ED3-8174-679BADCCF996.jpg" alt="ภาพสวย" class="sweet-photo pulse-glow">
+                        </div>
+                        <h3>ถึงเธอผู้เท่ห์และคูล</h3>
+                        <p class="typewriter">
+                            โดนัทคนเก่ง เธอคือผู้หญิงที่เท่ห์และคูลที่สุดในโลก<br>
+                            ทุกท่าทางของเธอล้วนมีเสน่ห์<br>
+                            ทำให้เค้าหลงรักไม่รู้ลืม ✨
+                        </p>
+                        <div class="love-emojis">
+                            <span class="floating-emoji">💕</span>
+                            <span class="floating-emoji">😍</span>
+                            <span class="floating-emoji">✨</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-card">
+                        <h3>ดูแลตัวเองด้วยนะ</h3>
+                        <p>
+                            อยากให้เธอหายเหนื่อยและมีแต่ความสุข<br>
+                            ไม่ต้องเครียดมากไป ค่อยๆ ทำไป<br>
+                            ดูแลสุขภาพตัวเองให้ดีๆ นะคะ 💪<br>
+                            เพราะเค้าอยากเห็นเธอแข็งแรงเสมอ
+                        </p>
+                    </div>
+                    
+                    <div class="message-card">
+                        <h3>เรื่องการเรียน</h3>
+                        <p>
+                            ขอให้การเรียนของเธอเป็นไปด้วยดี<br>
+                            ได้เกรดดีๆ ตามที่ตั้งใจไว้<br>
+                            แต่อย่าเครียดมากจนเกินไปนะ 📚<br>
+                            เค้าเชื่อในความสามารถของเธอ
+                        </p>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-infinity"></i> ข้อความหวานๆ อีกนิด
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 5: Sweet Messages 2 -->
+        <div class="page" id="page5">
+            <div class="content">
+                <h1 class="page-title">� ข้อความหวานๆ ต่อ �</h1>
+                <div class="love-declaration">
+                    <div class="declaration-photos">
+                        <img src="images/DB4B22BD-08D4-4B6A-9712-5CA09E5014AB.jpg" alt="ภาพหวาน" class="love-photo">
+                        <img src="images/F2BA042D-505E-4CE3-95F5-A78C6E919F9D.jpg" alt="ภาพหวาน 2" class="love-photo">
+                    </div>
+                    <div class="big-heart rainbow-heart">
+                        <i class="fas fa-heart"></i>
+                        <div class="heart-rays">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="declaration-text">
+                        <h2>โดนัท สุภิชยา ชีพสูงเนิน</h2>
+                        <p class="main-love-text">
+                            จากวันที่เราได้พบกันที่โรงเรียน<br>
+                            จากเพื่อนห้องเดียวกัน<br>
+                            กลายเป็นคนสำคัญในชีวิต<br><br>
+                            
+                            เธอทำให้เค้ารู้ว่าความรักคืออะไร<br>
+                            ความอบอุ่น ความเข้าใจ<br>
+                            และความสุขที่แท้จริง<br><br>
+                            
+                            <strong>เค้าชอบเธอมากมายนะ ❤️</strong><br>
+                            และจะยังเป็นแบบนี้ไปตลอด
+                        </p>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-ring"></i> สัญญาดีๆ
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 6: Promise -->
+        <div class="page" id="page6">
+            <div class="content">
+                <h1 class="page-title">🤝 สัญญาดีๆ 🤝</h1>
+                <div class="promise-container">
+                    <div class="promise-ring">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="promises">
+                        <h3>เค้าสัญญาว่า:</h3>
+                        <div class="promise-list">
+                            <div class="promise-item">
+                                <i class="fas fa-shield-heart"></i>
+                                <p>จะดูแลเธอและเป็นกำลังใจให้เสมอ</p>
+                            </div>
+                            <div class="promise-item">
+                                <i class="fas fa-sun"></i>
+                                <p>จะพยายามทำให้เธอมีความสุขทุกวัน</p>
+                            </div>
+                            <div class="promise-item">
+                                <i class="fas fa-hands-helping"></i>
+                                <p>จะอยู่เคียงข้างเธอในทุกสถานการณ์</p>
+                            </div>
+                            <div class="promise-item">
+                                <i class="fas fa-heart-pulse"></i>
+                                <p>จะห่วงใยเธอด้วยหัวใจที่จริงใส</p>
+                            </div>
+                            <div class="promise-item">
+                                <i class="fas fa-infinity"></i>
+                                <p>จะเป็นเพื่อนที่ดีให้เธอไปนานๆ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-calendar-heart"></i> ทุกวันกับเธอ
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 7: Every Day With You -->
+        <div class="page" id="page7">
+            <div class="content">
+                <h1 class="page-title">🌅 ทุกวันกับโดนัท 🌙</h1>
+                <div class="daily-love">
+                    <div class="time-of-day morning">
+                        <div class="time-photo">
+                            <img src="images/F2BA042D-505E-4CE3-95F5-A78C6E919F9D.jpg" alt="เช้า" class="daily-photo">
+                        </div>
+                        <i class="fas fa-sun"></i>
+                        <h3>ตอนเช้า</h3>
+                        <p>ขอให้เธอตื่นมาด้วยรอยยิ้ม<br>เริ่มวันใหม่ด้วยความสุข</p>
+                    </div>
+                    
+                    <div class="time-of-day afternoon">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>ตอนกลางวัน</h3>
+                        <p>ให้มีแรงกำลังใจในการทำงาน<br>และอย่าลืมพักผ่อนบ้างนะ</p>
+                    </div>
+                    
+                    <div class="time-of-day evening">
+                        <i class="fas fa-moon"></i>
+                        <h3>ตอนเย็น</h3>
+                        <p>ขอให้หมดเหนื่อยหมดเครียด<br>มีเวลาทำในสิ่งที่ชอบ</p>
+                    </div>
+                    
+                    <div class="time-of-day night">
+                        <i class="fas fa-star"></i>
+                        <h3>ตอนกลางคืน</h3>
+                        <p>หลับสบายและฝันดี<br>พร้อมตื่นมาใหม่พรุ่งนี้</p>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-sparkles"></i> ความปรารถนาสุดท้าย
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 8: Final Wishes -->
+        <div class="page" id="page8">
+            <div class="content">
+                <h1 class="page-title">✨ ความปรารถนาจากใจ ✨</h1>
+                <div class="final-wishes">
+                    <div class="final-photos">
+                        <img src="images/F6E7E2C5-67D0-4F28-B45A-872F931A251B.jpg" alt="ภาพสุดท้าย" class="final-photo">
+                        <img src="images/F8A10545-5084-479E-9D49-7FFAD75D4BC3.jpg" alt="ภาพสุดท้าย 2" class="final-photo">
+                        <img src="images/FD32625C-E454-42C4-8A1D-0A2DDCC75209.jpg" alt="ภาพสุดท้าย 3" class="final-photo">
+                    </div>
+                    <div class="wish-sparkle">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="final-text">
+                        <p class="big-wish">
+                            ขอให้โดนัท สุภิชยา<br>
+                            มีความสุขมากมายตลอดไป<br>
+                            สุขภาพแข็งแรง ไม่เจ็บไม่ป่วย<br>
+                            การเรียนราบรื่น ได้เกรดดีๆ<br>
+                            มีคนห่วงใยและคนที่ห่วงใยเธอ<br>
+                            อยู่เคียงข้างเสมอ<br><br>
+                            
+                            <span class="highlight">เธอคือดาวดวงสำคัญในชีวิตเค้า</span><br>
+                            <span class="highlight">และจะเป็นแบบนั้นไปตลอด</span>
+                        </p>
+                        
+                        <div class="signature">
+                            <p>ด้วยความห่วงใยอันไม่มีที่สิ้นสุด</p>
+                            <p class="from">💕 จากคนที่ห่วงใยเธอมากที่สุด 💕</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="restart-section">
+                    <button class="restart-btn" onclick="restartJourney()">
+                        <i class="fas fa-redo"></i> อ่านอีกรอบ
+                    </button>
+                    <button class="surprise-btn" onclick="createSurprise()">
+                        <i class="fas fa-gift"></i> เซอร์ไพรส์! 🎁
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <div class="nav-dots">
+                <span class="dot active" onclick="goToPage(1)" data-tooltip="หน้าแรก"></span>
+                <span class="dot" onclick="goToPage(2)" data-tooltip="วันเกิด"></span>
+                <span class="dot" onclick="goToPage(3)" data-tooltip="สิ่งที่ชอบ"></span>
+                <span class="dot" onclick="goToPage(4)" data-tooltip="ข้อความจากใจ"></span>
+                <span class="dot" onclick="goToPage(5)" data-tooltip="ข้อความหวาน"></span>
+                <span class="dot" onclick="goToPage(6)" data-tooltip="สัญญา"></span>
+                <span class="dot" onclick="goToPage(7)" data-tooltip="ทุกวัน"></span>
+                <span class="dot" onclick="goToPage(8)" data-tooltip="ความปรารถนา"></span>
+            </div>
+            <div class="music-control">
+                <button id="musicBtn" class="music-btn" onclick="toggleMusic()" title="เปิด/ปิด เพลง">
+                    <i class="fas fa-music"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Snow Effect -->
+        <div class="snow-container">
+            <div class="snowflake">❄️</div>
+            <div class="snowflake">❄️</div>
+            <div class="snowflake">❄️</div>
+            <div class="snowflake">❄️</div>
+            <div class="snowflake">❄️</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
