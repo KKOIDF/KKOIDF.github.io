@@ -437,7 +437,29 @@ body {
     margin: 0 auto 15px auto;
 }
 
-.favorite-photos-gallery .actress-photo {
+.favorite-photos-triangle {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto 15px auto;
+}
+
+.triangle-row-1 {
+    display: flex;
+    justify-content: center;
+}
+
+.triangle-row-2 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.favorite-photos-gallery .actress-photo,
+.favorite-photos-triangle .actress-photo {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -874,6 +896,182 @@ body {
     color: #ff6b6b !important;
 }
 
+/* Poem Styles */
+.poem-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.poem-decoration {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.poem-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.corner-decoration {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    opacity: 0.7;
+}
+
+.corner-decoration.top-left { top: 15px; left: 15px; }
+.corner-decoration.top-right { top: 15px; right: 15px; }
+.corner-decoration.bottom-left { bottom: 15px; left: 15px; }
+.corner-decoration.bottom-right { bottom: 15px; right: 15px; }
+
+.poem-content {
+    position: relative;
+    z-index: 2;
+}
+
+.poem-verse {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.poem-line {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    margin: 8px 0;
+    font-style: italic;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.poem-line:nth-child(1) { animation-delay: 0.2s; }
+.poem-line:nth-child(2) { animation-delay: 0.4s; }
+.poem-line:nth-child(3) { animation-delay: 0.6s; }
+.poem-line:nth-child(4) { animation-delay: 0.8s; }
+
+.poem-verse:nth-child(2) .poem-line:nth-child(1) { animation-delay: 1.0s; }
+.poem-verse:nth-child(2) .poem-line:nth-child(2) { animation-delay: 1.2s; }
+.poem-verse:nth-child(2) .poem-line:nth-child(3) { animation-delay: 1.4s; }
+.poem-verse:nth-child(2) .poem-line:nth-child(4) { animation-delay: 1.6s; }
+
+.poem-verse:nth-child(3) .poem-line:nth-child(1) { animation-delay: 1.8s; }
+.poem-verse:nth-child(3) .poem-line:nth-child(2) { animation-delay: 2.0s; }
+.poem-verse:nth-child(3) .poem-line:nth-child(3) { animation-delay: 2.2s; }
+.poem-verse:nth-child(3) .poem-line:nth-child(4) { animation-delay: 2.4s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.poem-signature {
+    margin-top: 30px;
+    text-align: right;
+    border-top: 1px solid rgba(255,107,107,0.3);
+    padding-top: 20px;
+}
+
+.signature-line {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: #ff6b6b;
+    font-weight: 600;
+    animation: fadeIn 2.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.floating-petals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.petal {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    animation: floatPetals 8s infinite linear;
+}
+
+.petal:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.petal:nth-child(2) {
+    left: 20%;
+    animation-delay: 1.6s;
+    animation-duration: 9s;
+}
+
+.petal:nth-child(3) {
+    left: 70%;
+    animation-delay: 3.2s;
+    animation-duration: 7s;
+}
+
+.petal:nth-child(4) {
+    left: 80%;
+    animation-delay: 4.8s;
+    animation-duration: 8.5s;
+}
+
+.petal:nth-child(5) {
+    left: 50%;
+    animation-delay: 6.4s;
+    animation-duration: 9.5s;
+}
+
+@keyframes floatPetals {
+    0% {
+        top: -10%;
+        transform: translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        top: 110%;
+        transform: translateX(100px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
 .restart-section {
     margin-top: 40px;
     display: flex;
@@ -1136,7 +1334,17 @@ body {
         gap: 8px;
     }
     
-    .favorite-photos-gallery .actress-photo {
+    .favorite-photos-triangle {
+        max-width: 250px;
+        gap: 12px;
+    }
+    
+    .triangle-row-2 {
+        gap: 15px;
+    }
+    
+    .favorite-photos-gallery .actress-photo,
+    .favorite-photos-triangle .actress-photo {
         width: 80px;
         height: 80px;
     }
@@ -1145,4 +1353,31 @@ body {
         width: 80px;
         height: 80px;
     }
+    
+    .poem-decoration {
+        padding: 25px 20px;
+        margin: 0 10px;
+    }
+    
+    .poem-line {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .signature-line {
+        font-size: 1.2rem;
+    }
+    
+    .corner-decoration {
+        font-size: 1.2rem;
+    }
+    
+    .corner-decoration.top-left,
+    .corner-decoration.top-right { top: 10px; }
+    .corner-decoration.bottom-left,
+    .corner-decoration.bottom-right { bottom: 10px; }
+    .corner-decoration.top-left,
+    .corner-decoration.bottom-left { left: 10px; }
+    .corner-decoration.top-right,
+    .corner-decoration.bottom-right { right: 10px; }
 }

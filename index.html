@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ถึงโดนัท ❤️</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -106,11 +106,14 @@
                     </div>
                     
                     <div class="favorite-item glow-hover">
-                        <div class="favorite-photos-gallery">
-                            <img src="images/BD6D86DC-4998-4A3D-A26A-90247D52BD5A.jpg" alt="นักแสดงสวย 1" class="actress-photo">
-                            <img src="images/DigitalCover-op.jpg" alt="นักแสดงสวย 2" class="actress-photo">
-                            <img src="images/w644 (1).jpg" alt="นักแสดงสวย 3" class="actress-photo">
-                            <img src="images/w644.jpg" alt="นักแสดงสวย 4" class="actress-photo">
+                        <div class="favorite-photos-triangle">
+                            <div class="triangle-row-1">
+                                <img src="images/DigitalCover-op.jpg" alt="นักแสดงสวย 1" class="actress-photo">
+                            </div>
+                            <div class="triangle-row-2">
+                                <img src="images/w644 (1).jpg" alt="นักแสดงสวย 2" class="actress-photo">
+                                <img src="images/w644.jpg" alt="นักแสดงสวย 3" class="actress-photo">
+                            </div>
                         </div>
                         <div class="star-icon rotating-star">
                             <i class="fas fa-star"></i>
@@ -264,8 +267,61 @@
             </div>
         </div>
 
-        <!-- Page 7: Every Day With You -->
+        <!-- Page 7: Poem -->
         <div class="page" id="page7">
+            <div class="content">
+                <h1 class="page-title">📝 แต่งกลอนให้เธอเด้ออ 📝</h1>
+                <div class="poem-container">
+                    <div class="poem-decoration">
+                        <div class="poem-border">
+                            <div class="corner-decoration top-left">❁</div>
+                            <div class="corner-decoration top-right">❁</div>
+                            <div class="corner-decoration bottom-left">❁</div>
+                            <div class="corner-decoration bottom-right">❁</div>
+                        </div>
+                        <div class="poem-content">
+                            <div class="poem-verse">
+                                <p class="poem-line">Just once, my love, to touch your lips,</p>
+                                <p class="poem-line">Like rain that falls in fleeting drips.</p>
+                                <p class="poem-line">A single kiss, not claimed in haste,</p>
+                                <p class="poem-line">But aged like wine, with gentle taste.</p>
+                            </div>
+                            
+                            <div class="poem-verse">
+                                <p class="poem-line">They say true love will stand the test,</p>
+                                <p class="poem-line">Not always loud, but felt the best.</p>
+                                <p class="poem-line">A flower blooms, then fades from sight,</p>
+                                <p class="poem-line">But once it bloomed — it felt so right.</p>
+                            </div>
+                            
+                            <div class="poem-verse">
+                                <p class="poem-line">Better one rose than fields untrue,</p>
+                                <p class="poem-line">A moment pure, a kiss from you.</p>
+                                <p class="poem-line">For in that breath, my soul would know,</p>
+                                <p class="poem-line">The seed was sown, and love did grow.</p>
+                            </div>
+                            
+                            <div class="poem-signature">
+                                <p class="signature-line">Kritchakorn J.</p>
+                            </div>
+                        </div>
+                        <div class="floating-petals">
+                            <span class="petal">🌸</span>
+                            <span class="petal">🌺</span>
+                            <span class="petal">🌹</span>
+                            <span class="petal">🌻</span>
+                            <span class="petal">🌷</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-calendar-heart"></i> ทุกวันกับเธอ
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 8: Every Day With You -->
+        <div class="page" id="page8">
             <div class="content">
                 <h1 class="page-title">🌅 ทุกวันกับโดนัท 🌙</h1>
                 <div class="daily-love">
@@ -302,8 +358,8 @@
             </div>
         </div>
 
-        <!-- Page 8: Final Wishes -->
-        <div class="page" id="page8">
+        <!-- Page 9: Final Wishes -->
+        <div class="page" id="page9">
             <div class="content">
                 <h1 class="page-title">✨ ความปรารถนาจากใจ ✨</h1>
                 <div class="final-wishes">
@@ -355,8 +411,9 @@
                 <span class="dot" onclick="goToPage(4)" data-tooltip="ข้อความจากใจ"></span>
                 <span class="dot" onclick="goToPage(5)" data-tooltip="ข้อความหวาน"></span>
                 <span class="dot" onclick="goToPage(6)" data-tooltip="สัญญา"></span>
-                <span class="dot" onclick="goToPage(7)" data-tooltip="ทุกวัน"></span>
-                <span class="dot" onclick="goToPage(8)" data-tooltip="ความปรารถนา"></span>
+                <span class="dot" onclick="goToPage(7)" data-tooltip="บทกวี"></span>
+                <span class="dot" onclick="goToPage(8)" data-tooltip="ทุกวัน"></span>
+                <span class="dot" onclick="goToPage(9)" data-tooltip="ความปรารถนา"></span>
             </div>
             <div class="music-control">
                 <button id="musicBtn" class="music-btn" onclick="toggleMusic()" title="เปิด/ปิด เพลง">
