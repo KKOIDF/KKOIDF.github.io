@@ -427,6 +427,14 @@ let slideshowInterval = null;
 let currentZoom = 1;
 let currentFilter = 'none';
 let currentLayout = 'grid';
+let currentGalleryMode = '3d';
+let carousel3DRotation = 0;
+let autoRotate3D = false;
+let autoRotateInterval = null;
+let infiniteSpeed = 'normal';
+let infiniteDirection = 1;
+let morphingIndex = 0;
+let morphingInterval = null;
 
 // Initialize gallery when page loads
 document.addEventListener('DOMContentLoaded', function() {
@@ -434,11 +442,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeGallery() {
-    // Add click event to gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => openLightbox(index));
-    });
+    // Initialize default 3D carousel mode
+    switchGalleryMode('3d');
     
     // Add keyboard navigation for lightbox
     document.addEventListener('keydown', function(e) {
@@ -534,129 +539,35 @@ function applyZoom() {
     lightboxImage.style.transform = `scale(${currentZoom})`;
 }
 
-// Gallery Control Functions
+// Gallery Control Functions - Legacy (keeping for compatibility)
 function toggleSlideshow() {
-    const btn = document.getElementById('slideshowBtn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    if (slideshowInterval) {
-        clearInterval(slideshowInterval);
-        slideshowInterval = null;
-        btn.innerHTML = '<i class="fas fa-play"></i> สไลด์โชว์';
-        btn.classList.remove('active');
-        
-        // Remove slideshow animation
-        galleryItems.forEach(item => {
-            item.classList.remove('slideshow-active');
-        });
-    } else {
-        btn.innerHTML = '<i class="fas fa-pause"></i> หยุดสไลด์โชว์';
-        btn.classList.add('active');
-        
-        let currentSlide = 0;
-        slideshowInterval = setInterval(() => {
-            // Remove previous active
-            galleryItems.forEach(item => {
-                item.classList.remove('slideshow-active');
-            });
-            
-            // Add to current
-            if (galleryItems[currentSlide]) {
-                galleryItems[currentSlide].classList.add('slideshow-active');
-            }
-            
-            currentSlide = (currentSlide + 1) % galleryItems.length;
-        }, 2000);
-    }
+    // Legacy function - switch to normal mode first
+    switchGalleryMode('normal');
 }
 
 function toggleLayout() {
-    const btn = document.getElementById('layoutBtn');
-    const galleryGrid = document.getElementById('galleryGrid');
-    
-    if (currentLayout === 'grid') {
-        currentLayout = 'masonry';
-        galleryGrid.className = 'gallery-grid masonry';
-        btn.innerHTML = '<i class="fas fa-list"></i> แบบรายการ';
-    } else if (currentLayout === 'masonry') {
-        currentLayout = 'list';
-        galleryGrid.className = 'gallery-grid list';
-        btn.innerHTML = '<i class="fas fa-th"></i> แบบตาราง';
-    } else {
-        currentLayout = 'grid';
-        galleryGrid.className = 'gallery-grid';
-        btn.innerHTML = '<i class="fas fa-columns"></i> แบบอิฐ';
-    }
+    // Legacy function - switch to normal mode first
+    switchGalleryMode('normal');
 }
 
 function applyFilter() {
-    const btn = document.getElementById('filterBtn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    // Cycle through filters
-    const filters = ['none', 'sepia', 'grayscale', 'vintage', 'cool'];
-    const currentIndex = filters.indexOf(currentFilter);
-    const nextIndex = (currentIndex + 1) % filters.length;
-    currentFilter = filters[nextIndex];
-    
-    // Remove all filter classes
-    galleryItems.forEach(item => {
-        filters.forEach(filter => {
-            item.classList.remove(`filter-${filter}`);
-        });
-    });
-    
-    // Apply new filter
-    if (currentFilter !== 'none') {
-        galleryItems.forEach(item => {
-            item.classList.add(`filter-${currentFilter}`);
-        });
-    }
-    
-    // Update button text
-    const filterNames = {
-        'none': 'ฟิลเตอร์',
-        'sepia': 'เซเปีย',
-        'grayscale': 'ขาวดำ',
-        'vintage': 'วินเทจ',
-        'cool': 'เย็น'
-    };
-    
-    btn.innerHTML = `<i class="fas fa-filter"></i> ${filterNames[currentFilter]}`;
+    // Legacy function - switch to normal mode first  
+    switchGalleryMode('normal');
 }
 
 function shuffleGallery() {
-    const galleryGrid = document.getElementById('galleryGrid');
-    const items = Array.from(galleryGrid.children);
-    
-    // Fisher-Yates shuffle algorithm
-    for (let i = items.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [items[i], items[j]] = [items[j], items[i]];
+    // Enhanced shuffle that works with current mode
+    if (currentGalleryMode === '3d') {
+        // Shuffle carousel rotation
+        carousel3DRotation = Math.random() * 360;
+        const carousel = document.getElementById('carousel3d');
+        if (carousel) {
+            carousel.style.transform = `translate(-50%, -50%) rotateX(-10deg) rotateY(${carousel3DRotation}deg)`;
+        }
+    } else {
+        // Switch to normal mode for traditional shuffle
+        switchGalleryMode('normal');
     }
-    
-    // Add shuffle animation
-    galleryGrid.style.opacity = '0';
-    galleryGrid.style.transform = 'scale(0.95)';
-    
-    setTimeout(() => {
-        // Clear and re-append shuffled items
-        galleryGrid.innerHTML = '';
-        items.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-            item.style.animation = 'shuffleIn 0.6s ease-out forwards';
-            galleryGrid.appendChild(item);
-        });
-        
-        galleryGrid.style.opacity = '1';
-        galleryGrid.style.transform = 'scale(1)';
-        
-        // Update gallery images array to match new order
-        galleryImages = items.map(item => item.dataset.image);
-        
-        // Re-initialize click events
-        initializeGallery();
-    }, 300);
 }
 
 // Add shuffle animation
@@ -731,3 +642,347 @@ floatStyle.textContent = `
     }
 `;
 document.head.appendChild(floatStyle);
+
+// New Gallery Mode Functions
+function switchGalleryMode(mode) {
+    // Clear all intervals
+    clearInterval(autoRotateInterval);
+    clearInterval(morphingInterval);
+    
+    // Hide all gallery modes
+    document.querySelectorAll('.gallery-mode').forEach(gallery => {
+        gallery.style.display = 'none';
+        gallery.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('.gallery-controls .control-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected mode
+    const targetGallery = document.getElementById(mode + 'Gallery');
+    const targetButton = document.getElementById(mode + 'Btn');
+    
+    if (targetGallery && targetButton) {
+        targetGallery.style.display = 'block';
+        targetGallery.classList.add('active');
+        targetButton.classList.add('active');
+        currentGalleryMode = mode;
+        
+        // Initialize specific mode
+        switch(mode) {
+            case '3d':
+                init3DCarousel();
+                break;
+            case 'infinite':
+                initInfiniteGallery();
+                break;
+            case 'parallax':
+                initParallaxGallery();
+                break;
+            case 'morphing':
+                initMorphingGallery();
+                break;
+            case 'normal':
+                initNormalGallery();
+                break;
+        }
+    }
+}
+
+// 3D Carousel Functions
+function init3DCarousel() {
+    const carousel = document.getElementById('carousel3d');
+    if (carousel) {
+        carousel.style.transform = `translate(-50%, -50%) rotateX(-10deg) rotateY(${carousel3DRotation}deg)`;
+        
+        // Add click events to carousel items
+        const items = carousel.querySelectorAll('.carousel-item');
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+    }
+}
+
+function rotate3DCarousel(direction) {
+    const step = 36; // 360 / 10 images
+    
+    if (direction === 'next') {
+        carousel3DRotation -= step;
+    } else {
+        carousel3DRotation += step;
+    }
+    
+    const carousel = document.getElementById('carousel3d');
+    if (carousel) {
+        carousel.style.transform = `translate(-50%, -50%) rotateX(-10deg) rotateY(${carousel3DRotation}deg)`;
+    }
+}
+
+function toggle3DAutoRotate() {
+    if (autoRotate3D) {
+        clearInterval(autoRotateInterval);
+        autoRotate3D = false;
+    } else {
+        autoRotateInterval = setInterval(() => {
+            rotate3DCarousel('next');
+        }, 2000);
+        autoRotate3D = true;
+    }
+}
+
+// Infinite Scroll Functions
+function initInfiniteGallery() {
+    const track = document.getElementById('infiniteTrack');
+    if (track) {
+        track.style.animationDuration = getInfiniteSpeed();
+        track.style.animationDirection = infiniteDirection === 1 ? 'normal' : 'reverse';
+        
+        // Add click events
+        const items = track.querySelectorAll('.infinite-item');
+        items.forEach((item, index) => {
+            if (index < 10) { // Only first 10 items (not duplicates)
+                item.addEventListener('click', () => openLightbox(index));
+            }
+        });
+    }
+}
+
+function changeInfiniteSpeed(speed) {
+    infiniteSpeed = speed;
+    const track = document.getElementById('infiniteTrack');
+    
+    // Remove active class from all speed buttons
+    document.querySelectorAll('.infinite-controls button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Add active to clicked button
+    event.target.classList.add('active');
+    
+    if (track) {
+        track.style.animationDuration = getInfiniteSpeed();
+    }
+}
+
+function getInfiniteSpeed() {
+    switch(infiniteSpeed) {
+        case 'slow': return '60s';
+        case 'fast': return '15s';
+        default: return '30s';
+    }
+}
+
+function changeInfiniteDirection() {
+    infiniteDirection *= -1;
+    const track = document.getElementById('infiniteTrack');
+    if (track) {
+        track.style.animationDirection = infiniteDirection === 1 ? 'normal' : 'reverse';
+    }
+}
+
+// Parallax Functions
+function initParallaxGallery() {
+    const layer1Items = document.querySelectorAll('.layer-1 .parallax-item');
+    const layer2Items = document.querySelectorAll('.layer-2 .parallax-item');
+    
+    layer1Items.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index * 2));
+    });
+    
+    layer2Items.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index * 2 + 1));
+    });
+}
+
+// Morphing Gallery Functions
+function initMorphingGallery() {
+    startMorphingAnimation();
+    
+    const items = document.querySelectorAll('.morphing-item');
+    items.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+}
+
+function startMorphingAnimation() {
+    const items = document.querySelectorAll('.morphing-item');
+    
+    morphingInterval = setInterval(() => {
+        items.forEach(item => item.classList.remove('active'));
+        
+        morphingIndex = (morphingIndex + 1) % items.length;
+        items[morphingIndex].classList.add('active');
+    }, 3000);
+}
+
+function changeMorphingShape(shape) {
+    const container = document.getElementById('morphingGalleryContainer');
+    if (container) {
+        // Remove all shape classes
+        container.classList.remove('shape-circle', 'shape-heart', 'shape-star', 'shape-diamond');
+        
+        // Add new shape class
+        container.classList.add(`shape-${shape}`);
+        
+        // Update all morphing items
+        const items = container.querySelectorAll('.morphing-item');
+        items.forEach(item => {
+            item.classList.remove('shape-circle', 'shape-heart', 'shape-star', 'shape-diamond');
+            item.classList.add(`shape-${shape}`);
+        });
+    }
+}
+
+// Normal Gallery Functions
+function initNormalGallery() {
+    const items = document.querySelectorAll('#normalGallery .gallery-item');
+    items.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+}
+
+// Enhanced Gallery Entrance Animations
+function initializeGalleryAnimations() {
+    setTimeout(() => {
+        switch(currentGalleryMode) {
+            case '3d':
+                animate3DCarousel();
+                break;
+            case 'infinite':
+                animateInfiniteGallery();
+                break;
+            case 'parallax':
+                animateParallaxGallery();
+                break;
+            case 'morphing':
+                animateMorphingGallery();
+                break;
+            default:
+                animateNormalGallery();
+                break;
+        }
+    }, 300);
+}
+
+function animate3DCarousel() {
+    const carousel = document.getElementById('carousel3d');
+    const controls = document.querySelectorAll('.carousel-controls button');
+    
+    if (carousel) {
+        carousel.style.opacity = '0';
+        carousel.style.transform = 'translate(-50%, -50%) rotateX(-90deg) scale(0.5)';
+        
+        setTimeout(() => {
+            carousel.style.transition = 'all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            carousel.style.opacity = '1';
+            carousel.style.transform = `translate(-50%, -50%) rotateX(-10deg) rotateY(${carousel3DRotation}deg)`;
+        }, 200);
+    }
+    
+    controls.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            btn.style.transition = 'all 0.5s ease';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, 600 + index * 150);
+    });
+}
+
+function animateInfiniteGallery() {
+    const container = document.querySelector('.infinite-container');
+    const controls = document.querySelectorAll('.infinite-controls button');
+    
+    if (container) {
+        container.style.opacity = '0';
+        container.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            container.style.transition = 'all 0.8s ease';
+            container.style.opacity = '1';
+            container.style.transform = 'scale(1)';
+        }, 200);
+    }
+    
+    controls.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            btn.style.transition = 'all 0.4s ease';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, 500 + index * 100);
+    });
+}
+
+function animateParallaxGallery() {
+    const container = document.querySelector('.parallax-container');
+    
+    if (container) {
+        container.style.opacity = '0';
+        
+        setTimeout(() => {
+            container.style.transition = 'all 1s ease';
+            container.style.opacity = '1';
+        }, 200);
+    }
+}
+
+function animateMorphingGallery() {
+    const container = document.querySelector('.morphing-container');
+    const controls = document.querySelectorAll('.morphing-controls button');
+    
+    if (container) {
+        container.style.opacity = '0';
+        container.style.transform = 'scale(0.5) rotate(180deg)';
+        
+        setTimeout(() => {
+            container.style.transition = 'all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            container.style.opacity = '1';
+            container.style.transform = 'scale(1) rotate(0deg)';
+        }, 200);
+    }
+    
+    controls.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'scale(0) rotate(360deg)';
+        
+        setTimeout(() => {
+            btn.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            btn.style.opacity = '1';
+            btn.style.transform = 'scale(1) rotate(0deg)';
+        }, 800 + index * 150);
+    });
+}
+
+function animateNormalGallery() {
+    const items = document.querySelectorAll('#normalGallery .gallery-item');
+    const controls = document.querySelectorAll('.gallery-controls .control-btn');
+    
+    items.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(50px) rotateX(30deg)';
+        
+        setTimeout(() => {
+            item.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0) rotateX(0)';
+        }, index * 100);
+    });
+    
+    controls.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(-30px)';
+        
+        setTimeout(() => {
+            btn.style.transition = 'all 0.4s ease';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+}

@@ -361,121 +361,261 @@
         <!-- Page 9: Gallery -->
         <div class="page" id="page9">
             <div class="content">
-                <h1 class="page-title">🖼️ แกลลอรี่ภาพสวยๆ 🖼️</h1>
+                <h1 class="page-title">🖼️ ความทรงจำที่ดีที่สุด 🖼️</h1>
                 <div class="gallery-container">
                     <div class="gallery-controls">
-                        <button class="control-btn" onclick="toggleSlideshow()" id="slideshowBtn">
-                            <i class="fas fa-play"></i> สไลด์โชว์
+                        <button class="control-btn" onclick="switchGalleryMode('normal')" id="normalBtn">
+                            <i class="fas fa-th"></i> ปกติ
                         </button>
-                        <button class="control-btn" onclick="toggleLayout()" id="layoutBtn">
-                            <i class="fas fa-th"></i> เปลี่ยนรูปแบบ
+                        <button class="control-btn active" onclick="switchGalleryMode('3d')" id="carousel3dBtn">
+                            <i class="fas fa-sync-alt"></i> 3D หมุน
                         </button>
-                        <button class="control-btn" onclick="applyFilter()" id="filterBtn">
-                            <i class="fas fa-filter"></i> ฟิลเตอร์
+                        <button class="control-btn" onclick="switchGalleryMode('infinite')" id="infiniteBtn">
+                            <i class="fas fa-infinity"></i> วิ่งไม่หยุด
                         </button>
-                        <button class="control-btn" onclick="shuffleGallery()">
-                            <i class="fas fa-random"></i> สลับตำแหน่ง
+                        <button class="control-btn" onclick="switchGalleryMode('parallax')" id="parallaxBtn">
+                            <i class="fas fa-layer-group"></i> หลายชั้น
+                        </button>
+                        <button class="control-btn" onclick="switchGalleryMode('morphing')" id="morphingBtn">
+                            <i class="fas fa-magic"></i> เปลี่ยนรูป
                         </button>
                     </div>
+                    </div>
                     
-                    <div class="gallery-grid" id="galleryGrid">
-                        <div class="gallery-item" data-image="images/GLR/PP (1).jpg">
-                            <img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
+                    <!-- Normal Gallery -->
+                    <div class="gallery-mode" id="normalGallery" style="display: none;">
+                        <div class="gallery-grid" id="galleryGrid">
+                            <div class="gallery-item" data-image="images/GLR/PP (1).jpg">
+                                <img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (2).jpg">
+                                <img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (3).jpg">
+                                <img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (4).jpg">
+                                <img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (5).jpg">
+                                <img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (6).jpg">
+                                <img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (7).jpg">
+                                <img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (8).jpg">
+                                <img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (9).jpg">
+                                <img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-image="images/GLR/PP (10).jpg">
+                                <img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10" loading="lazy">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>ดูขยาย</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (2).jpg">
-                            <img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
+                    </div>
+
+                    <!-- 3D Carousel Gallery -->
+                    <div class="gallery-mode active" id="carousel3dGallery">
+                        <div class="carousel-3d-container">
+                            <div class="carousel-3d" id="carousel3d">
+                                <div class="carousel-item" data-image="images/GLR/PP (1).jpg">
+                                    <img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (2).jpg">
+                                    <img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (3).jpg">
+                                    <img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (4).jpg">
+                                    <img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (5).jpg">
+                                    <img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (6).jpg">
+                                    <img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (7).jpg">
+                                    <img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (8).jpg">
+                                    <img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (9).jpg">
+                                    <img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9">
+                                </div>
+                                <div class="carousel-item" data-image="images/GLR/PP (10).jpg">
+                                    <img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10">
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (3).jpg">
-                            <img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
+                            <div class="carousel-controls">
+                                <button onclick="rotate3DCarousel('prev')"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="rotate3DCarousel('next')"><i class="fas fa-chevron-right"></i></button>
+                                <button onclick="toggle3DAutoRotate()"><i class="fas fa-sync-alt"></i> หมุนอัตโนมัติ</button>
                             </div>
                         </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (4).jpg">
-                            <img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
+                    </div>
+
+                    <!-- Infinite Scroll Gallery -->
+                    <div class="gallery-mode" id="infiniteGallery" style="display: none;">
+                        <div class="infinite-container">
+                            <div class="infinite-track" id="infiniteTrack">
+                                <div class="infinite-item"><img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10"></div>
+                                <!-- Duplicate for seamless loop -->
+                                <div class="infinite-item"><img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9"></div>
+                                <div class="infinite-item"><img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10"></div>
+                            </div>
+                            <div class="infinite-controls">
+                                <button onclick="changeInfiniteSpeed('slow')">🐌 ช้า</button>
+                                <button onclick="changeInfiniteSpeed('normal')" class="active">🚶 ปกติ</button>
+                                <button onclick="changeInfiniteSpeed('fast')">🏃 เร็ว</button>
+                                <button onclick="changeInfiniteDirection()">🔄 เปลี่ยนทิศทาง</button>
                             </div>
                         </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (5).jpg">
-                            <img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
+                    </div>
+
+                    <!-- Parallax Gallery -->
+                    <div class="gallery-mode" id="parallaxGallery" style="display: none;">
+                        <div class="parallax-container">
+                            <div class="parallax-layer layer-1">
+                                <div class="parallax-item"><img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9"></div>
+                            </div>
+                            <div class="parallax-layer layer-2">
+                                <div class="parallax-item"><img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8"></div>
+                                <div class="parallax-item"><img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10"></div>
                             </div>
                         </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (6).jpg">
-                            <img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
+                    </div>
+
+                    <!-- Morphing Gallery -->
+                    <div class="gallery-mode" id="morphingGallery" style="display: none;">
+                        <div class="morphing-container">
+                            <div class="morphing-gallery" id="morphingGalleryContainer">
+                                <div class="morphing-item active">
+                                    <img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9">
+                                </div>
+                                <div class="morphing-item">
+                                    <img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10">
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (7).jpg">
-                            <img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (8).jpg">
-                            <img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (9).jpg">
-                            <img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item" data-image="images/GLR/PP (10).jpg">
-                            <img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10" loading="lazy">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>ดูขยาย</span>
-                                </div>
+                            <div class="morphing-controls">
+                                <button onclick="changeMorphingShape('circle')">⭕ วงกลม</button>
+                                <button onclick="changeMorphingShape('heart')">💖 หัวใจ</button>
+                                <button onclick="changeMorphingShape('star')">⭐ ดาว</button>
+                                <button onclick="changeMorphingShape('diamond')">💎 เพชร</button>
                             </div>
                         </div>
                     </div>
