@@ -1,5 +1,5 @@
 let currentPage = 1;
-const totalPages = 9;
+const totalPages = 10;
 let musicPlaying = false;
 
 // Initialize the website
@@ -105,6 +105,11 @@ function goToPage(pageNumber) {
     // Add entrance animations for specific elements
     setTimeout(() => {
         addPageAnimations(pageNumber);
+        
+        // Special animation for gallery page
+        if (pageNumber === 9) {
+            initializeGalleryAnimations();
+        }
     }, 300);
 }
 
@@ -402,3 +407,327 @@ particleStyle.textContent = `
     }
 `;
 document.head.appendChild(particleStyle);
+
+// Gallery Variables
+let galleryImages = [
+    'images/GLR/PP (1).jpg',
+    'images/GLR/PP (2).jpg',
+    'images/GLR/PP (3).jpg',
+    'images/GLR/PP (4).jpg',
+    'images/GLR/PP (5).jpg',
+    'images/GLR/PP (6).jpg',
+    'images/GLR/PP (7).jpg',
+    'images/GLR/PP (8).jpg',
+    'images/GLR/PP (9).jpg',
+    'images/GLR/PP (10).jpg'
+];
+
+let currentImageIndex = 0;
+let slideshowInterval = null;
+let currentZoom = 1;
+let currentFilter = 'none';
+let currentLayout = 'grid';
+
+// Initialize gallery when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeGallery();
+});
+
+function initializeGallery() {
+    // Add click event to gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+    
+    // Add keyboard navigation for lightbox
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightboxModal').style.display === 'block') {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevImage();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                closeLightbox();
+            }
+        }
+    });
+}
+
+// Lightbox Functions
+function openLightbox(index) {
+    currentImageIndex = index;
+    const modal = document.getElementById('lightboxModal');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const counter = document.getElementById('lightboxCounter');
+    
+    lightboxImage.src = galleryImages[index];
+    counter.textContent = `${index + 1} / ${galleryImages.length}`;
+    
+    modal.style.display = 'block';
+    resetZoom();
+    
+    // Add smooth entrance animation
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.style.opacity = '0';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    updateLightboxImage();
+}
+
+function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    const counter = document.getElementById('lightboxCounter');
+    
+    lightboxImage.style.opacity = '0';
+    
+    setTimeout(() => {
+        lightboxImage.src = galleryImages[currentImageIndex];
+        counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        resetZoom();
+        
+        setTimeout(() => {
+            lightboxImage.style.opacity = '1';
+        }, 100);
+    }, 150);
+}
+
+// Zoom Functions
+function zoomIn() {
+    currentZoom += 0.25;
+    if (currentZoom > 3) currentZoom = 3;
+    applyZoom();
+}
+
+function zoomOut() {
+    currentZoom -= 0.25;
+    if (currentZoom < 0.5) currentZoom = 0.5;
+    applyZoom();
+}
+
+function resetZoom() {
+    currentZoom = 1;
+    applyZoom();
+}
+
+function applyZoom() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.transform = `scale(${currentZoom})`;
+}
+
+// Gallery Control Functions
+function toggleSlideshow() {
+    const btn = document.getElementById('slideshowBtn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+        btn.innerHTML = '<i class="fas fa-play"></i> สไลด์โชว์';
+        btn.classList.remove('active');
+        
+        // Remove slideshow animation
+        galleryItems.forEach(item => {
+            item.classList.remove('slideshow-active');
+        });
+    } else {
+        btn.innerHTML = '<i class="fas fa-pause"></i> หยุดสไลด์โชว์';
+        btn.classList.add('active');
+        
+        let currentSlide = 0;
+        slideshowInterval = setInterval(() => {
+            // Remove previous active
+            galleryItems.forEach(item => {
+                item.classList.remove('slideshow-active');
+            });
+            
+            // Add to current
+            if (galleryItems[currentSlide]) {
+                galleryItems[currentSlide].classList.add('slideshow-active');
+            }
+            
+            currentSlide = (currentSlide + 1) % galleryItems.length;
+        }, 2000);
+    }
+}
+
+function toggleLayout() {
+    const btn = document.getElementById('layoutBtn');
+    const galleryGrid = document.getElementById('galleryGrid');
+    
+    if (currentLayout === 'grid') {
+        currentLayout = 'masonry';
+        galleryGrid.className = 'gallery-grid masonry';
+        btn.innerHTML = '<i class="fas fa-list"></i> แบบรายการ';
+    } else if (currentLayout === 'masonry') {
+        currentLayout = 'list';
+        galleryGrid.className = 'gallery-grid list';
+        btn.innerHTML = '<i class="fas fa-th"></i> แบบตาราง';
+    } else {
+        currentLayout = 'grid';
+        galleryGrid.className = 'gallery-grid';
+        btn.innerHTML = '<i class="fas fa-columns"></i> แบบอิฐ';
+    }
+}
+
+function applyFilter() {
+    const btn = document.getElementById('filterBtn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    // Cycle through filters
+    const filters = ['none', 'sepia', 'grayscale', 'vintage', 'cool'];
+    const currentIndex = filters.indexOf(currentFilter);
+    const nextIndex = (currentIndex + 1) % filters.length;
+    currentFilter = filters[nextIndex];
+    
+    // Remove all filter classes
+    galleryItems.forEach(item => {
+        filters.forEach(filter => {
+            item.classList.remove(`filter-${filter}`);
+        });
+    });
+    
+    // Apply new filter
+    if (currentFilter !== 'none') {
+        galleryItems.forEach(item => {
+            item.classList.add(`filter-${currentFilter}`);
+        });
+    }
+    
+    // Update button text
+    const filterNames = {
+        'none': 'ฟิลเตอร์',
+        'sepia': 'เซเปีย',
+        'grayscale': 'ขาวดำ',
+        'vintage': 'วินเทจ',
+        'cool': 'เย็น'
+    };
+    
+    btn.innerHTML = `<i class="fas fa-filter"></i> ${filterNames[currentFilter]}`;
+}
+
+function shuffleGallery() {
+    const galleryGrid = document.getElementById('galleryGrid');
+    const items = Array.from(galleryGrid.children);
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+    
+    // Add shuffle animation
+    galleryGrid.style.opacity = '0';
+    galleryGrid.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+        // Clear and re-append shuffled items
+        galleryGrid.innerHTML = '';
+        items.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+            item.style.animation = 'shuffleIn 0.6s ease-out forwards';
+            galleryGrid.appendChild(item);
+        });
+        
+        galleryGrid.style.opacity = '1';
+        galleryGrid.style.transform = 'scale(1)';
+        
+        // Update gallery images array to match new order
+        galleryImages = items.map(item => item.dataset.image);
+        
+        // Re-initialize click events
+        initializeGallery();
+    }, 300);
+}
+
+// Add shuffle animation
+const shuffleStyle = document.createElement('style');
+shuffleStyle.textContent = `
+    @keyframes shuffleIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) rotateX(90deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+    }
+`;
+document.head.appendChild(shuffleStyle);
+
+// Gallery page entrance animations
+function initializeGalleryAnimations() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const controls = document.querySelectorAll('.control-btn');
+    
+    // Animate gallery items with stagger effect
+    galleryItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(50px) rotateX(30deg)';
+        
+        setTimeout(() => {
+            item.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0) rotateX(0)';
+        }, index * 100);
+    });
+    
+    // Animate control buttons
+    controls.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(-30px)';
+        
+        setTimeout(() => {
+            btn.style.transition = 'all 0.4s ease';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+    
+    // Add floating animation to some items
+    setTimeout(() => {
+        galleryItems.forEach((item, index) => {
+            if (index % 3 === 0) {
+                item.style.animation = 'float 6s ease-in-out infinite';
+                item.style.animationDelay = `${index * 0.5}s`;
+            }
+        });
+    }, 1000);
+}
+
+// Add floating animation
+const floatStyle = document.createElement('style');
+floatStyle.textContent = `
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        33% {
+            transform: translateY(-10px) rotate(1deg);
+        }
+        66% {
+            transform: translateY(-5px) rotate(-1deg);
+        }
+    }
+`;
+document.head.appendChild(floatStyle);

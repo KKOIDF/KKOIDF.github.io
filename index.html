@@ -358,8 +358,136 @@
             </div>
         </div>
 
-        <!-- Page 9: Final Wishes -->
+        <!-- Page 9: Gallery -->
         <div class="page" id="page9">
+            <div class="content">
+                <h1 class="page-title">🖼️ แกลลอรี่ภาพสวยๆ 🖼️</h1>
+                <div class="gallery-container">
+                    <div class="gallery-controls">
+                        <button class="control-btn" onclick="toggleSlideshow()" id="slideshowBtn">
+                            <i class="fas fa-play"></i> สไลด์โชว์
+                        </button>
+                        <button class="control-btn" onclick="toggleLayout()" id="layoutBtn">
+                            <i class="fas fa-th"></i> เปลี่ยนรูปแบบ
+                        </button>
+                        <button class="control-btn" onclick="applyFilter()" id="filterBtn">
+                            <i class="fas fa-filter"></i> ฟิลเตอร์
+                        </button>
+                        <button class="control-btn" onclick="shuffleGallery()">
+                            <i class="fas fa-random"></i> สลับตำแหน่ง
+                        </button>
+                    </div>
+                    
+                    <div class="gallery-grid" id="galleryGrid">
+                        <div class="gallery-item" data-image="images/GLR/PP (1).jpg">
+                            <img src="images/GLR/PP (1).jpg" alt="ภาพสวย 1" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (2).jpg">
+                            <img src="images/GLR/PP (2).jpg" alt="ภาพสวย 2" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (3).jpg">
+                            <img src="images/GLR/PP (3).jpg" alt="ภาพสวย 3" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (4).jpg">
+                            <img src="images/GLR/PP (4).jpg" alt="ภาพสวย 4" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (5).jpg">
+                            <img src="images/GLR/PP (5).jpg" alt="ภาพสวย 5" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (6).jpg">
+                            <img src="images/GLR/PP (6).jpg" alt="ภาพสวย 6" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (7).jpg">
+                            <img src="images/GLR/PP (7).jpg" alt="ภาพสวย 7" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (8).jpg">
+                            <img src="images/GLR/PP (8).jpg" alt="ภาพสวย 8" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (9).jpg">
+                            <img src="images/GLR/PP (9).jpg" alt="ภาพสวย 9" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-image="images/GLR/PP (10).jpg">
+                            <img src="images/GLR/PP (10).jpg" alt="ภาพสวย 10" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span>ดูขยาย</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="next-btn" onclick="nextPage()">
+                    <i class="fas fa-sparkles"></i> ความปรารถนาสุดท้าย
+                </button>
+            </div>
+        </div>
+
+        <!-- Page 10: Final Wishes -->
+        <div class="page" id="page10">
             <div class="content">
                 <h1 class="page-title">✨ ความปรารถนาจากใจ ✨</h1>
                 <div class="final-wishes">
@@ -413,12 +541,39 @@
                 <span class="dot" onclick="goToPage(6)" data-tooltip="สัญญา"></span>
                 <span class="dot" onclick="goToPage(7)" data-tooltip="บทกวี"></span>
                 <span class="dot" onclick="goToPage(8)" data-tooltip="ทุกวัน"></span>
-                <span class="dot" onclick="goToPage(9)" data-tooltip="ความปรารถนา"></span>
+                <span class="dot" onclick="goToPage(9)" data-tooltip="แกลลอรี่"></span>
+                <span class="dot" onclick="goToPage(10)" data-tooltip="ความปรารถนา"></span>
             </div>
             <div class="music-control">
                 <button id="musicBtn" class="music-btn" onclick="toggleMusic()" title="เปิด/ปิด เพลง">
                     <i class="fas fa-music"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div id="lightboxModal" class="lightbox-modal">
+            <div class="lightbox-content">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <div class="lightbox-nav">
+                    <button class="lightbox-prev" onclick="prevImage()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="lightbox-next" onclick="nextImage()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="lightbox-image-container">
+                    <img id="lightboxImage" src="" alt="">
+                    <div class="lightbox-zoom-controls">
+                        <button onclick="zoomIn()"><i class="fas fa-search-plus"></i></button>
+                        <button onclick="zoomOut()"><i class="fas fa-search-minus"></i></button>
+                        <button onclick="resetZoom()"><i class="fas fa-expand-arrows-alt"></i></button>
+                    </div>
+                </div>
+                <div class="lightbox-info">
+                    <span id="lightboxCounter">1 / 10</span>
+                </div>
             </div>
         </div>
 
