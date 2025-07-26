@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 ถึงโดนัท - เว็บไซต์แห่งความรัก 💖</title>
+    <title>💖 ถึงโดนัท 💖</title>
     <meta name="description" content="เว็บไซต์โรแมนติกพิเศษที่เต็มไปด้วยความรัก ความทรงจำ และความสุข สำหรับโดนัท สุภิชยา ชีพสูงเนิน">
     
     <!-- Google Fonts -->
@@ -159,10 +159,18 @@
     </noscript>
     
     <!-- React Scripts will be injected here by build process -->
+    <!-- For development, we'll include React and our app directly -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Include our React app -->
+    <script type="text/babel" src="src/index.js"></script>
+    
     <script type="text/javascript">
         // Hide loading screen when React app loads
         window.addEventListener('DOMContentLoaded', function() {
-            // This will be handled by React, but we add a fallback
+            // Give React more time to load and render
             setTimeout(function() {
                 const loadingScreen = document.getElementById('loadingScreen');
                 if (loadingScreen) {
@@ -171,8 +179,27 @@
                         loadingScreen.style.display = 'none';
                     }, 500);
                 }
-            }, 2000); // Show loading for at least 2 seconds
+            }, 3000); // Show loading for 3 seconds to ensure React loads
         });
+        
+        // Better loading detection - hide when React actually renders
+        const checkReactLoaded = () => {
+            const reactRoot = document.querySelector('#root > div:not(.loading-screen)');
+            if (reactRoot) {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            } else {
+                setTimeout(checkReactLoaded, 100);
+            }
+        };
+        
+        // Start checking after a short delay
+        setTimeout(checkReactLoaded, 1000);
         
         // Add some interactive effects
         document.addEventListener('mousemove', function(e) {
@@ -190,8 +217,5 @@
             `;
         });
     </script>
-</body>
-</html>
-
 </body>
 </html>
